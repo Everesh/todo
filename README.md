@@ -9,7 +9,6 @@ A simple, interactive, keyboard-driven TUI todo list manager for the terminal.
 - Clean, colorful terminal interface with 10 built-in color themes
 - Interactive task management with inline editing
 - 30 unique completion animations
-
 - Timer notifications with desktop alerts (Windows, macOS, Linux)
 - Flexible sorting modes (Off, Todo First, Done First)
 - Persistent storage using JSON format
