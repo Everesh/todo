@@ -5,7 +5,6 @@ bin/
 *.dll
 *.so
 *.dylib
-todo
 todo.exe
 
 *.test
@@ -24,7 +23,5 @@ go.work
 
 .DS_Store
 Thumbs.db
-
-todos.json
 
 releases/
