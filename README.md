@@ -2,7 +2,7 @@
 
 A simple, interactive TUI todo list manager for the terminal.
 
-![Preview](asssets/preview.gif)
+![Preview](assets/preview.gif)
 
 ## Features
 
@@ -69,7 +69,7 @@ The application launches with an interactive terminal interface. On first run, y
 | `Enter` | Confirm input when editing or creating |
 | `Esc`   | Cancel editing or creating             |
 
-![Edit Task](asssets/edit.gif)
+![Edit Task](assets/edit.gif)
 
 ### Timer and Notifications
 
@@ -86,7 +86,7 @@ When setting a timer, enter a duration using Go's time duration format. Examples
 
 When a timer expires, you'll receive a desktop notification for the task. The timer countdown is displayed next to the task until it expires or the task is marked as complete.
 
-![Timer Notification](asssets/timer.gif)
+![Timer Notification](assets/timer.gif)
 
 ### Customization
 
@@ -112,7 +112,7 @@ Todo CLI includes 10 carefully curated color themes:
 
 Press `t` to cycle through themes. Your theme preference is saved automatically.
 
-![Theme Selection](asssets/theme.gif)
+![Theme Selection](assets/theme.gif)
 
 ## Sorting Modes
 
@@ -124,7 +124,7 @@ Three sorting modes are available:
 
 Press `s` to cycle through sorting modes. Your preference is saved automatically.
 
-![Sorting Modes](asssets/sort.gif)
+![Sorting Modes](assets/sort.gif)
 
 ## Completion Animations
 
@@ -140,7 +140,7 @@ When you mark a task as complete, one of 30 unique animations plays. These inclu
 
 Each completion animation is randomly selected, ensuring a unique visual experience for every completed task.
 
-![Completion Animations](asssets/animation.gif)
+![Completion Animations](assets/animation.gif)
 
 ## Data Storage
 
