@@ -39,6 +39,7 @@ go install github.com/nirabyte/todo@latest
 ```
 
 Then run:
+
 ```bash
 todo
 ```
@@ -46,25 +47,28 @@ todo
 ### Build from Source
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/nirabyte/todo.git
    cd todo
    ```
 
 2. Build for your platform:
+
    ```bash
    # Using Make (if available)
    make build
-   
+
    # Or manually
    go build -o build/todo ./cmd/todo
    ```
 
 3. Run it:
+
    ```bash
    # Windows
    .\build\todo.exe
-   
+
    # macOS/Linux
    ./build/todo
    ```
@@ -83,6 +87,7 @@ todo
 ### Starting the App
 
 Run:
+
 ```bash
 todo
 ```
@@ -91,22 +96,22 @@ On first launch, you'll see helpful hints to get started.
 
 ### Navigation
 
-| Key | Action |
-|-----|--------|
-| `↑` or `k` | Move up |
-| `↓` or `j` | Move down |
-| `q` or `Ctrl+C` | Quit |
+| Key             | Action    |
+| --------------- | --------- |
+| `↑` or `k`      | Move up   |
+| `↓` or `j`      | Move down |
+| `q` or `Ctrl+C` | Quit      |
 
 ### Managing Tasks
 
-| Key | Action |
-|-----|--------|
-| `n` | New task |
-| `e` | Edit selected task |
-| `d` | Delete selected task |
+| Key     | Action                     |
+| ------- | -------------------------- |
+| `n`     | New task                   |
+| `e`     | Edit selected task         |
+| `d`     | Delete selected task       |
 | `Space` | Toggle complete/uncomplete |
-| `Enter` | Confirm (when editing) |
-| `Esc` | Cancel (when editing) |
+| `Enter` | Confirm (when editing)     |
+| `Esc`   | Cancel (when editing)      |
 
 ![Edit Task](assets/edit.gif)
 
@@ -115,6 +120,7 @@ On first launch, you'll see helpful hints to get started.
 Press `@` on any task to set a reminder timer.
 
 **Examples:**
+
 - `10m` = 10 minutes
 - `1h30m` = 1 hour 30 minutes
 - `45s` = 45 seconds
@@ -126,9 +132,9 @@ When the timer expires, you'll get a desktop notification. The countdown display
 
 ### Customization
 
-| Key | Action |
-|-----|--------|
-| `t` | Cycle through themes |
+| Key | Action                      |
+| --- | --------------------------- |
+| `t` | Cycle through themes        |
 | `s` | Cycle through sorting modes |
 
 ## Themes
@@ -181,6 +187,7 @@ Each animation is randomly selected for a fresh experience.
 Your tasks are saved automatically in a file called `todos.json` in the same directory where you run the app.
 
 **What's saved:**
+
 - All your tasks (title, completion status, due dates)
 - Your selected theme
 - Your sorting preference
@@ -193,15 +200,17 @@ You can backup this file, edit it manually, or move it to another computer.
 
 ```
 todo/
-├── cmd/todo/          # Application entry point
-├── internal/          # Internal packages
-│   ├── app/          # App initialization
-│   ├── config/       # Configuration
-│   ├── models/       # Data models & logic
-│   ├── themes/       # Theme definitions
-│   └── styles/       # UI styles
-├── assets/           # Images and GIFs
-└── build/            # Build output
+├── assets/          # Images/icons 
+├── cmd/todo/        
+│   └── main.go      # Entry point
+├── internal/
+│   ├── app/         # App setup
+│   ├── config/      # Config handling
+│   ├── models/      # Data & logic
+│   └── ui/          # UI code
+├── go.mod           # Go module dependencies
+├── go.sum           # Dependency checksums
+└── README.md        
 ```
 
 ### Building for All Platforms
@@ -215,19 +224,44 @@ make release
 ```
 
 This creates binaries for:
+
 - Windows (amd64, 386, arm64)
 - macOS (amd64, arm64)
 - Linux (amd64, 386, arm64, arm)
 
+## Roadmap
 
-## Technologies Used
+### Done
 
-- **Go** - Programming language
+- [x] Core app: tasks, themes, animations, timers, inline edit, sorting
+- [x] JSON-based persistence (`todos.json`) with automatic save
+- [x] 10 color themes (Catppuccin, Nord, Gruvbox, Tokyo Night,etc)
+- [x] 30 unique completion animations
+- [x] Timer reminders with desktop notifications
+- [x] Inline task editing
+- [x] Sorting modes (Off / Todo First / Done First)
+- [x] build scripts for multiple platforms (Windows/macOS/Linux)
+- [ ] Multilevel tasks (subtasks/tree)
+- [ ] Markdown storage + import/export
+- [ ] Import TODOs from source code
+- [ ] More UI improvements
+- [ ] More Features?
+
+## Built With
+
+- **Go**
 - **Bubble Tea** - TUI framework
 - **Lip Gloss** - Styling library
 - **Beeep** - Desktop notifications
 
-
 ## Contributing
 
-Contributions are welcome! Feel free to open issues or submit pull requests.
+Please see the full contribution guidelines in `CONTRIBUTING.md`.
+
+[CONTRIBUTING.md](CONTRIBUTING.md)
+
+## License
+
+This project is licensed under the MIT License — see the `LICENSE` file for details.
+
+[LICENSE](LICENSE)
