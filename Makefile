@@ -1,10 +1,11 @@
-.PHONY: build build-all clean help
+.PHONY: build build-all release clean clean-release clean-all test help
 
 # Application name
 APP_NAME := todo
 
 # Build directory
 BUILD_DIR := build
+RELEASE_DIR := releases
 
 # Version (can be overridden)
 VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
@@ -49,11 +50,37 @@ build-all: ## Build for all platforms
 	@GOOS=linux GOARCH=arm $(GOBUILD) $(GOFLAGS) -o $(BUILD_DIR)/$(APP_NAME)-linux-arm ./cmd/todo
 	@echo "Done! Binaries are in $(BUILD_DIR)/"
 
+release: build-all ## Prepare release binaries with simple names
+	@echo "Preparing release binaries..."
+	@rm -rf $(RELEASE_DIR)
+	@mkdir -p $(RELEASE_DIR)
+	@echo "Preparing Windows binaries..."
+	@mkdir -p $(RELEASE_DIR)/windows-amd64 && cp $(BUILD_DIR)/$(APP_NAME)-windows-amd64.exe $(RELEASE_DIR)/windows-amd64/$(APP_NAME).exe
+	@mkdir -p $(RELEASE_DIR)/windows-386 && cp $(BUILD_DIR)/$(APP_NAME)-windows-386.exe $(RELEASE_DIR)/windows-386/$(APP_NAME).exe
+	@mkdir -p $(RELEASE_DIR)/windows-arm64 && cp $(BUILD_DIR)/$(APP_NAME)-windows-arm64.exe $(RELEASE_DIR)/windows-arm64/$(APP_NAME).exe
+	@echo "Preparing macOS binaries..."
+	@mkdir -p $(RELEASE_DIR)/darwin-amd64 && cp $(BUILD_DIR)/$(APP_NAME)-darwin-amd64 $(RELEASE_DIR)/darwin-amd64/$(APP_NAME) && chmod +x $(RELEASE_DIR)/darwin-amd64/$(APP_NAME)
+	@mkdir -p $(RELEASE_DIR)/darwin-arm64 && cp $(BUILD_DIR)/$(APP_NAME)-darwin-arm64 $(RELEASE_DIR)/darwin-arm64/$(APP_NAME) && chmod +x $(RELEASE_DIR)/darwin-arm64/$(APP_NAME)
+	@echo "Preparing Linux binaries..."
+	@mkdir -p $(RELEASE_DIR)/linux-amd64 && cp $(BUILD_DIR)/$(APP_NAME)-linux-amd64 $(RELEASE_DIR)/linux-amd64/$(APP_NAME) && chmod +x $(RELEASE_DIR)/linux-amd64/$(APP_NAME)
+	@mkdir -p $(RELEASE_DIR)/linux-386 && cp $(BUILD_DIR)/$(APP_NAME)-linux-386 $(RELEASE_DIR)/linux-386/$(APP_NAME) && chmod +x $(RELEASE_DIR)/linux-386/$(APP_NAME)
+	@mkdir -p $(RELEASE_DIR)/linux-arm64 && cp $(BUILD_DIR)/$(APP_NAME)-linux-arm64 $(RELEASE_DIR)/linux-arm64/$(APP_NAME) && chmod +x $(RELEASE_DIR)/linux-arm64/$(APP_NAME)
+	@mkdir -p $(RELEASE_DIR)/linux-arm && cp $(BUILD_DIR)/$(APP_NAME)-linux-arm $(RELEASE_DIR)/linux-arm/$(APP_NAME) && chmod +x $(RELEASE_DIR)/linux-arm/$(APP_NAME)
+	@echo "Done! Release binaries are in $(RELEASE_DIR)/"
+	@echo "Each platform folder contains a simple '$(APP_NAME)' or '$(APP_NAME).exe' binary"
+
 clean: ## Clean build artifacts
 	@echo "Cleaning..."
 	$(GOCLEAN)
 	@rm -rf $(BUILD_DIR)
 	@echo "Done!"
+
+clean-release: ## Clean release artifacts
+	@echo "Cleaning release artifacts..."
+	@rm -rf $(RELEASE_DIR)
+	@echo "Done!"
+
+clean-all: clean clean-release ## Clean both build and release artifacts
 
 test: ## Run tests
 	$(GOCMD) test -v ./...
