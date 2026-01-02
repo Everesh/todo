@@ -42,8 +42,8 @@ func New() *App {
 }
 
 func (a *App) Run() error {
+
 	p := tea.NewProgram(a.Model, tea.WithAltScreen())
 	_, err := p.Run()
 	return err
 }
-
